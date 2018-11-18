@@ -1,71 +1,45 @@
-@import '../../style/themes/index';
-@import '../../style/mixins/index';
-@import './customize.less';
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
 
-@list-prefix-cls: ~'@{ant-prefix}-list';
+@list-prefix-cls: ~"@{ant-prefix}-list";
 
 .@{list-prefix-cls} {
   .reset-component;
-
   position: relative;
-
   * {
     outline: none;
   }
-
   &-pagination {
-    margin-top: @margin-lg;
+    margin-top: 24px;
     text-align: right;
-
-    // https://github.com/ant-design/ant-design/issues/20037
-    .@{ant-prefix}-pagination-options {
-      text-align: left;
-    }
   }
-
   &-more {
-    margin-top: @margin-sm;
+    margin-top: 12px;
     text-align: center;
     button {
-      padding-right: 32px;
       padding-left: 32px;
+      padding-right: 32px;
     }
   }
-
   &-spin {
+    text-align: center;
     min-height: 40px;
-    text-align: center;
   }
-
   &-empty-text {
-    padding: @list-empty-text-padding;
-    color: @disabled-color;
+    color: @text-color-secondary;
     font-size: @font-size-base;
+    padding: @list-empty-text-padding;
     text-align: center;
   }
-
-  &-items {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
   &-item {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    display: flex;
     padding: @list-item-padding;
-
-    &-content {
-      color: @text-color;
-    }
-
     &-meta {
+      align-items: flex-start;
       display: flex;
       flex: 1;
-      align-items: flex-start;
       font-size: 0;
-
       &-avatar {
         margin-right: @list-item-meta-avatar-margin-right;
       }
@@ -73,13 +47,13 @@
         flex: 1 0;
       }
       &-title {
-        margin-bottom: 4px;
         color: @text-color;
+        margin-bottom: 4px;
         font-size: @font-size-base;
         line-height: 22px;
         > a {
           color: @text-color;
-          transition: all 0.3s;
+          transition: all .3s;
           &:hover {
             color: @primary-color;
           }
@@ -87,59 +61,62 @@
       }
       &-description {
         color: @text-color-secondary;
-        font-size: @list-item-meta-description-font-size;
+        font-size: @font-size-base;
         line-height: 22px;
       }
     }
+    &-content {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
+    &-content-single {
+      justify-content: flex-start;
+    }
     &-action {
+      font-size: 0;
       flex: 0 0 auto;
       margin-left: 48px;
       padding: 0;
-      font-size: 0;
       list-style: none;
-
       & > li {
-        position: relative;
         display: inline-block;
-        padding: 0 @padding-xs;
         color: @text-color-secondary;
+        cursor: pointer;
+        padding: 0 8px;
+        position: relative;
         font-size: @font-size-base;
         line-height: 22px;
         text-align: center;
-        cursor: pointer;
       }
       & > li:first-child {
         padding-left: 0;
       }
       &-split {
+        background-color: @border-color-split;
+        margin-top: -7px;
         position: absolute;
         top: 50%;
         right: 0;
         width: 1px;
         height: 14px;
-        margin-top: -7px;
-        background-color: @border-color-split;
       }
     }
-  }
-
-  &-header {
-    background: @list-header-background;
-  }
-
-  &-footer {
-    background: @list-footer-background;
+    &-main {
+      display: flex;
+      flex: 1;
+    }
   }
 
   &-header,
   &-footer {
-    padding-top: @padding-sm;
-    padding-bottom: @padding-sm;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 
   &-empty {
-    padding: @padding-md 0;
     color: @text-color-secondary;
+    padding: 16px 0;
     font-size: 12px;
     text-align: center;
   }
@@ -155,55 +132,55 @@
     border-bottom: 1px solid @border-color-split;
   }
 
-  &-split&-empty &-footer {
-    border-top: 1px solid @border-color-split;
-  }
-
   &-loading &-spin-nested-loading {
     min-height: 32px;
   }
 
-  &-split&-something-after-last-item .@{ant-prefix}-spin-container > &-items > &-item:last-child {
+  &-something-after-last-item .@{ant-prefix}-spin-container > &-item:last-child {
     border-bottom: 1px solid @border-color-split;
   }
 
   &-lg &-item {
-    padding: @list-item-padding-lg;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   &-sm &-item {
-    padding: @list-item-padding-sm;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   &-vertical &-item {
-    align-items: initial;
-
+    display: block;
+    &-extra-wrap {
+      display: flex;
+    }
     &-main {
       display: block;
       flex: 1;
     }
-
     &-extra {
-      margin-left: 40px;
+      margin-left: 58px;
     }
-
     &-meta {
       margin-bottom: @list-item-meta-margin-bottom;
-
       &-title {
-        margin-bottom: @list-item-meta-title-margin-bottom;
         color: @heading-color;
+        margin-bottom: @list-item-meta-title-margin-bottom;
         font-size: @font-size-lg;
         line-height: 24px;
       }
     }
-
+    &-content {
+      display: block;
+      color: @text-color;
+      font-size: @font-size-base;
+      margin: @list-item-content-margin;
+    }
     &-action {
-      margin-top: @padding-md;
       margin-left: auto;
-
       > li {
-        padding: 0 @padding-md;
+        padding: 0 16px;
         &:first-child {
           padding-left: 0;
         }
@@ -211,30 +188,17 @@
     }
   }
 
-  &-grid .@{ant-prefix}-col > &-item {
-    display: block;
-    max-width: 100%;
-    margin-bottom: @margin-md;
+  &-grid &-item {
+    border-bottom: none;
     padding-top: 0;
     padding-bottom: 0;
-    border-bottom: none;
-  }
-
-  // ============================ without flex ============================
-  &-item-no-flex {
-    display: block;
-  }
-
-  // Horizontal
-  &:not(.@{list-prefix-cls}-vertical) {
-    .@{list-prefix-cls}-item-no-flex {
-      .@{list-prefix-cls}-item-action {
-        float: right;
-      }
+    margin-bottom: 16px;
+    &-content {
+      display: block;
+      max-width: 100%;
     }
   }
 }
 
 @import './bordered';
 @import './responsive';
-@import './rtl';
