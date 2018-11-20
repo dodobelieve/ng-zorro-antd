@@ -1,12 +1,12 @@
 @input-box-height: 34px;
 
 .@{calendar-prefix-cls}-range-picker-input {
-  width: 44%;
-  height: 99%;
-  text-align: center;
   background-color: transparent;
   border: 0;
+  height: 99%;
   outline: 0;
+  width: 44%;
+  text-align: center;
   .placeholder();
 
   &[disabled] {
@@ -15,14 +15,11 @@
 }
 
 .@{calendar-prefix-cls}-range-picker-separator {
-  display: inline-block;
-  min-width: 10px;
-  height: 100%;
   color: @text-color-secondary;
-  white-space: nowrap;
-  text-align: center;
+  width: 10px;
+  display: inline-block;
+  height: 100%;
   vertical-align: top;
-  pointer-events: none;
 }
 
 .@{calendar-prefix-cls}-range {
@@ -31,16 +28,16 @@
 
   .@{calendar-prefix-cls}-date-panel {
     &::after {
+      content: ".";
       display: block;
-      clear: both;
       height: 0;
+      clear: both;
       visibility: hidden;
-      content: '.';
     }
   }
   &-part {
-    position: relative;
     width: 50%;
+    position: relative;
   }
 
   &-left {
@@ -64,40 +61,20 @@
   &-middle {
     position: absolute;
     left: 50%;
-    z-index: 1;
-    height: @input-box-height;
-    margin: 1px 0 0 0;
-    padding: 0 200px 0 0;
-    color: @text-color-secondary;
-    line-height: @input-box-height;
+    width: 20px;
+    margin-left: -132px;
     text-align: center;
-    transform: translateX(-50%);
-    pointer-events: none;
+    height: @input-box-height;
+    line-height: @input-box-height;
+    color: @text-color-secondary;
   }
 
   &-right .@{calendar-prefix-cls}-date-input-wrap {
-    margin-left: -90px;
+    margin-left: -118px;
   }
 
   &.@{calendar-prefix-cls}-time &-middle {
-    padding: 0 10px 0 0;
-    transform: translateX(-50%);
-  }
-
-  .@{calendar-prefix-cls}-today
-    :not(.@{calendar-prefix-cls}-disabled-cell)
-    :not(.@{calendar-prefix-cls}-last-month-cell)
-    :not(.@{calendar-prefix-cls}-next-month-btn-day) {
-    .@{calendar-prefix-cls}-date {
-      color: @primary-color;
-      background: @primary-2;
-      border-color: @primary-color;
-    }
-  }
-
-  .@{calendar-prefix-cls}-selected-start-date,
-  .@{calendar-prefix-cls}-selected-end-date {
-    .calendar-selected-cell;
+    margin-left: -12px;
   }
 
   &.@{calendar-prefix-cls}-time &-right .@{calendar-prefix-cls}-date-input-wrap {
@@ -113,11 +90,10 @@
   .@{calendar-timepicker-prefix-cls}-input {
     .input;
     height: @input-height-sm;
-    padding-right: 0;
-    padding-left: 0;
-    line-height: @input-height-sm;
     border: 0;
     box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
 
     &:focus {
       box-shadow: none;
@@ -151,23 +127,23 @@
   }
 
   .@{calendar-prefix-cls}-in-range-cell {
-    position: relative;
     border-radius: 0;
+    position: relative;
     > div {
       position: relative;
       z-index: 1;
     }
-    &::before {
-      position: absolute;
-      top: 4px;
-      right: 0;
-      bottom: 4px;
-      left: 0;
+    &:before {
+      content: "";
       display: block;
       background: @item-active-bg;
-      border: 0;
       border-radius: 0;
-      content: '';
+      border: 0;
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 0;
+      right: 0;
     }
   }
 
@@ -186,8 +162,7 @@
 
   .@{calendar-prefix-cls},
   .@{calendar-prefix-cls}-month-panel,
-  .@{calendar-prefix-cls}-year-panel,
-  .@{calendar-prefix-cls}-decade-panel {
+  .@{calendar-prefix-cls}-year-panel {
     &-header {
       border-bottom: 0;
     }
@@ -198,18 +173,18 @@
 
   &.@{calendar-prefix-cls}-time {
     .@{calendar-timepicker-prefix-cls} {
+      height: 207px;
+      width: 100%;
       top: 68px;
       z-index: 2; // cover .ant-calendar-range .ant-calendar-in-range-cell > div (z-index: 1)
-      width: 100%;
-      height: 207px;
       &-panel {
         height: 267px;
         margin-top: -34px;
       }
 
       &-inner {
-        height: 100%;
         padding-top: 40px;
+        height: 100%;
         background: none;
       }
 
@@ -230,8 +205,8 @@
       margin-right: 8px;
     }
     .@{calendar-prefix-cls}-today-btn {
-      height: 22px;
       margin: 8px 12px;
+      height: 22px;
       line-height: 22px;
     }
   }
