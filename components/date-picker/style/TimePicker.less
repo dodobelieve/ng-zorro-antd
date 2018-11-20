@@ -1,27 +1,27 @@
 .@{calendar-timepicker-prefix-cls} {
   position: absolute;
-  top: 40px;
   width: 100%;
+  top: 40px;
   background-color: @component-background;
 
   &-panel {
-    position: absolute;
     z-index: @zindex-picker;
+    position: absolute;
     width: 100%;
   }
 
   &-inner {
-    position: relative;
     display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    font-size: @font-size-base;
-    line-height: 1.5;
-    text-align: left;
+    position: relative;
+    outline: none;
     list-style: none;
+    font-size: @font-size-base;
+    text-align: left;
     background-color: @component-background;
     background-clip: padding-box;
-    outline: none;
+    line-height: 1.5;
+    overflow: hidden;
+    width: 100%;
   }
   &-combobox {
     width: 100%;
@@ -46,20 +46,21 @@
   }
 
   &-select {
-    position: relative; // Fix chrome weird render bug
     float: left;
-    height: 226px;
-    overflow: hidden;
     font-size: @font-size-base;
     border-right: @border-width-base @border-style-base @border-color-split;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative; // Fix chrome weird render bug
+    height: 226px;
 
     &:hover {
       overflow-y: auto;
     }
 
     &:first-child {
-      margin-left: 0;
       border-left: 0;
+      margin-left: 0;
     }
 
     &:last-child {
@@ -67,44 +68,40 @@
     }
 
     ul {
-      width: 100%;
-      max-height: 206px;
+      list-style: none;
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      list-style: none;
+      width: 100%;
+      max-height: 206px;
     }
 
     li {
+      padding-left: 32px;
+      list-style: none;
+      box-sizing: content-box;
+      margin: 0;
       width: 100%;
       height: 24px;
-      margin: 0;
       line-height: 24px;
-      text-align: center;
-      list-style: none;
       cursor: pointer;
-      transition: all .3s;
       user-select: none;
+      transition: background 0.3s ease;
+    }
 
-      &:last-child::after {
-        display: block;
-        height: 202px;
-        content: '';
-      }
+    li:last-child:after {
+      content: "";
+      height: 202px;
+      display: block;
+    }
 
-      &:hover {
-        background: @item-hover-bg;
-      }
-
-      &:focus {
-        color: @primary-color;
-        font-weight: 600;
-        outline: none;
-      }
+    li:hover {
+      background: @item-hover-bg;
     }
 
     li&-option-selected {
-      font-weight: 600;
       background: @time-picker-selected-bg;
+      font-weight: bold;
     }
 
     li&-option-disabled {
@@ -119,10 +116,10 @@
 
 .@{calendar-prefix-cls}-time {
   .@{calendar-prefix-cls}-day-select {
-    display: inline-block;
     padding: 0 2px;
-    color: @heading-color;
     font-weight: 500;
+    display: inline-block;
+    color: @heading-color;
     line-height: 34px;
   }
 

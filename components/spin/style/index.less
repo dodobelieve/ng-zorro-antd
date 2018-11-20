@@ -1,37 +1,34 @@
-@import '../../style/themes/index';
-@import '../../style/mixins/index';
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
 
-@spin-prefix-cls: ~'@{ant-prefix}-spin';
+@spin-prefix-cls: ~"@{ant-prefix}-spin";
 @spin-dot-default: @text-color-secondary;
 
 .@{spin-prefix-cls} {
   .reset-component;
-
-  position: absolute;
-  display: none;
   color: @primary-color;
-  text-align: center;
   vertical-align: middle;
+  text-align: center;
   opacity: 0;
+  position: absolute;
   transition: transform 0.3s @ease-in-out-circ;
+  display: none;
 
   &-spinning {
+    opacity: 1;
     position: static;
     display: inline-block;
-    opacity: 1;
   }
 
   &-nested-loading {
     position: relative;
     > div > .@{spin-prefix-cls} {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 4;
       display: block;
-      width: 100%;
+      position: absolute;
       height: 100%;
-      max-height: 400px;
+      max-height: 360px;
+      width: 100%;
+      z-index: 4;
       .@{spin-prefix-cls}-dot {
         position: absolute;
         top: 50%;
@@ -43,7 +40,7 @@
         top: 50%;
         width: 100%;
         padding-top: (@spin-dot-size - @font-size-base) / 2 + 2px;
-        text-shadow: 0 1px 2px @shadow-color-inverse;
+        text-shadow: 0 1px 2px #fff;
       }
       &.@{spin-prefix-cls}-show-text .@{spin-prefix-cls}-dot {
         margin-top: -@spin-dot-size / 2 - 10px;
@@ -77,36 +74,32 @@
 
   &-container {
     position: relative;
-    transition: opacity 0.3s;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 10;
-      display: ~'none \9';
-      width: 100%;
-      height: 100%;
-      background: @component-background;
-      opacity: 0;
-      transition: all 0.3s;
-      content: '';
-      pointer-events: none;
-    }
+    transition: opacity .3s;
+    .clearfix;
   }
 
   &-blur {
-    clear: both;
+    pointer-events: none;
+    user-select: none;
     overflow: hidden;
     opacity: 0.5;
-    user-select: none;
-    pointer-events: none;
+    -webkit-filter: blur(0.5px);
+    filter: blur(0.5px);
 
-    &::after {
-      opacity: 0.4;
-      pointer-events: auto;
+    /* autoprefixer: off */
+    filter: ~"progid\:DXImageTransform\.Microsoft\.Blur(PixelRadius\=1, MakeShadow\=false)";
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #fff;
+      opacity: 0.3;
+      transition: all .3s;
+      z-index: 10;
     }
   }
 
@@ -124,27 +117,26 @@
     display: inline-block;
     font-size: @spin-dot-size;
 
-    .square(1em);
+    .square(@spin-dot-size);
 
-    &-item {
-      position: absolute;
-      display: block;
+    i {
       width: 9px;
       height: 9px;
-      background-color: @primary-color;
       border-radius: 100%;
+      background-color: @primary-color;
       transform: scale(0.75);
-      transform-origin: 50% 50%;
+      display: block;
+      position: absolute;
       opacity: 0.3;
       animation: antSpinMove 1s infinite linear alternate;
-
+      transform-origin: 50% 50%;
       &:nth-child(1) {
-        top: 0;
         left: 0;
+        top: 0;
       }
       &:nth-child(2) {
-        top: 0;
         right: 0;
+        top: 0;
         animation-delay: 0.4s;
       }
       &:nth-child(3) {
@@ -153,8 +145,8 @@
         animation-delay: 0.8s;
       }
       &:nth-child(4) {
-        bottom: 0;
         left: 0;
+        bottom: 0;
         animation-delay: 1.2s;
       }
     }
@@ -172,6 +164,7 @@
   &-sm &-dot {
     font-size: @spin-dot-size-sm;
 
+    .square(@spin-dot-size-sm);
     i {
       width: 6px;
       height: 6px;
@@ -182,6 +175,7 @@
   &-lg &-dot {
     font-size: @spin-dot-size-lg;
 
+    .square(@spin-dot-size-lg);
     i {
       width: 14px;
       height: 14px;
@@ -212,5 +206,3 @@
     transform: rotate(405deg);
   }
 }
-
-@import './rtl';
